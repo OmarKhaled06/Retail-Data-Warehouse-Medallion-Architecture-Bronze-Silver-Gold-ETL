@@ -1,0 +1,48 @@
+USE DW;
+GO
+
+-- BRONZE VS SILVER ROW COUNT VALIDATION
+
+SELECT
+    'CUSTOMERS' AS table_name,
+    (SELECT COUNT(*) FROM bronze.CUSTOMERS) AS bronze_count,
+    (SELECT COUNT(*) FROM silver.CUSTOMERS) AS silver_count;
+
+SELECT
+    'PRODUCTS' AS table_name,
+    (SELECT COUNT(*) FROM bronze.PRODUCTS) AS bronze_count,
+    (SELECT COUNT(*) FROM silver.PRODUCTS) AS silver_count;
+
+SELECT
+    'ONLINE_ORDERS' AS table_name,
+    (SELECT COUNT(*) FROM bronze.ONLINE_ORDERS) AS bronze_count,
+    (SELECT COUNT(*) FROM silver.ONLINE_ORDERS) AS silver_count;
+
+-- NULL VALIDATION
+
+SELECT *
+FROM silver.INVENTORY
+WHERE Stock_Level IS NULL;
+
+-- INVALID PAYMENT VALIDATION
+
+SELECT *
+FROM silver.PAYMENTS
+WHERE Is_Valid = 0;
+
+-- INVALID DELIVERY DATE CHECK
+
+SELECT *
+FROM silver.DELIVERIES
+WHERE Is_Valid = 0;
+
+-- DUPLICATE CUSTOMER VALIDATION
+
+SELECT
+    Email,
+    COUNT(*) AS duplicate_count
+FROM bronze.CUSTOMERS
+GROUP BY Email
+HAVING COUNT(*) > 1;
+
+GO
