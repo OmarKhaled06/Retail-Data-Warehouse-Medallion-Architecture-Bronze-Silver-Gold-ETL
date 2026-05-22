@@ -137,7 +137,7 @@ Granularity:
 ---
 
 # Power BI Dashboard
-Screen Recorded walk-through : https://drive.google.com/file/d/1LLtUhZL0NFNfWws_ldZ_X5bJHpgwLzZR/view?usp=sharing
+Screen Recorded walkthrough : https://drive.google.com/file/d/1LLtUhZL0NFNfWws_ldZ_X5bJHpgwLzZR/view?usp=sharing
 
 The Power BI solution contains 4 fully interactive dashboard pages:
 
